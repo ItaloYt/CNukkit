@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static void inline create(struct Server *server, unsigned length) {
+static void inline create(Server *server, unsigned length) {
   server->motd.length = snprintf(
     server->motd.data, length,
     "MCPE;%s;%u;%s;%u;%u;%llu;%s;Survival;1;19132;19133;",
@@ -11,8 +11,8 @@ static void inline create(struct Server *server, unsigned length) {
     server->player_maximum, GUID, server->subtitle.data);
 }
 
-void server_create_motd(struct Server *server) {
+void server_create_motd(Server *server) {
   create(server, 0);
-  server->motd.data = malloc(server->motd.length);
-  create(server, server->motd.length);
+  server->motd.data = malloc(server->motd.length + 1);
+  create(server, server->motd.length + 1);
 }

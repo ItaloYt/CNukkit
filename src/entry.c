@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 
-struct Server server = {
+Server server = {
   .title = stringl("Titulo"),
   .protocol = 686,
   .version = stringl("1.21.2"),
@@ -18,7 +18,7 @@ int main() {
 
   if (server_start(&server)) return 1;
 
-  if (server_packets(&server)) return 2;
+  if (server_loop(&server)) return 2;
 
   if (server_close(&server)) return 3;
 
